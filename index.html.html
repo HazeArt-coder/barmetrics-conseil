@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BarMetrics Conseil — Performance financière CHR · Saint-Malo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --dark: #2D3436;
+  --dark2: #3D4446;
+  --teal: #00B894;
+  --teal-dark: #00917A;
+  --white: #F5F6FA;
+  --gray: #636E72;
+  --gray-light: #B2BEC3;
+  --bg: #F5F6FA;
+  --surface: #ffffff;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--dark);
+  overflow-x: hidden;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 5%; height: 64px;
+  background: rgba(245,246,250,0.94);
+  backdrop-filter: blur(14px);
+  border-bottom: 0.5px solid rgba(45,52,54,0.1);
+  transition: box-shadow 0.3s;
+}
+
+nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
+
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+
+.nav-mark {
+  width: 34px; height: 34px; background: var(--dark);
+  border-radius: 8px; display: flex; align-items: center; justify-content: center;
+}
+
+.nav-brand { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 16px; color: var(--dark); letter-spacing: -0.3px; }
+.nav-brand span { color: var(--teal); }
+
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a { font-size: 14px; color: var(--gray); text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover { color: var(--dark); }
+
+.nav-cta {
+  background: var(--dark) !important; color: var(--white) !important;
+  padding: 8px 20px; border-radius: 24px; font-weight: 500 !important;
+  transition: background 0.2s !important;
+}
+.nav-cta:hover { background: var(--teal-dark) !important; }
+
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+.hamburger span { display: block; width: 22px; height: 2px; background: var(--dark); border-radius: 2px; transition: all 0.3s; }
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh; display: flex; align-items: center;
+  padding: 100px 5% 80px; position: relative; overflow: hidden;
+}
+
+.hero::before {
+  content: ''; position: absolute; top: -120px; right: -120px;
+  width: 700px; height: 700px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,184,148,0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 4rem; align-items: center;
+  max-width: 1200px; width: 100%; margin: 0 auto;
+}
+
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 11px; font-weight: 500; letter-spacing: 2.5px;
+  text-transform: uppercase; color: var(--teal); margin-bottom: 1.5rem;
+  animation: fadeUp 0.5s ease both;
+}
+.hero-eyebrow::before { content: ''; width: 24px; height: 2px; background: var(--teal); border-radius: 2px; }
+
+.hero-title {
+  font-family: 'Syne', sans-serif; font-weight: 800;
+  font-size: clamp(34px, 4.5vw, 56px); line-height: 1.05;
+  letter-spacing: -1.5px; color: var(--dark); margin-bottom: 1.5rem;
+  animation: fadeUp 0.5s 0.1s ease both;
+}
+.hero-title em { font-style: normal; color: var(--teal); }
+
+.hero-sub {
+  font-size: 17px; font-weight: 300; color: var(--gray);
+  line-height: 1.75; max-width: 480px; margin-bottom: 2.5rem;
+  animation: fadeUp 0.5s 0.2s ease both;
+}
+
+.hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; animation: fadeUp 0.5s 0.3s ease both; }
+
+.btn-primary {
+  background: var(--dark); color: var(--white);
+  padding: 14px 28px; border-radius: 30px;
+  font-size: 15px; font-weight: 500; text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-primary:hover { background: var(--teal-dark); transform: translateY(-2px); }
+
+.btn-secondary {
+  background: transparent; color: var(--dark);
+  padding: 14px 28px; border-radius: 30px;
+  font-size: 15px; font-weight: 500; text-decoration: none;
+  border: 1.5px solid rgba(45,52,54,0.2);
+  transition: border-color 0.2s, transform 0.15s, color 0.2s;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-secondary:hover { border-color: var(--teal); color: var(--teal-dark); transform: translateY(-2px); }
+
+/* Hero card */
+.hero-visual { animation: fadeUp 0.6s 0.2s ease both; }
+
+.hero-card {
+  background: var(--dark); border-radius: 20px;
+  padding: 32px; position: relative; overflow: hidden;
+}
+.hero-card::before {
+  content: ''; position: absolute; top: -40px; right: -40px;
+  width: 160px; height: 160px; border-radius: 50%;
+  border: 22px solid rgba(0,184,148,0.1);
+}
+.hc-label { font-size: 10px; font-weight: 500; letter-spacing: 2.5px; text-transform: uppercase; color: var(--teal); margin-bottom: 1rem; }
+.hc-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 18px; color: var(--white); margin-bottom: 1.5rem; }
+.metric-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 1.5rem; }
+.metric { background: rgba(255,255,255,0.06); border-radius: 10px; padding: 14px; border: 0.5px solid rgba(255,255,255,0.08); }
+.metric-val { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 22px; color: var(--teal); }
+.metric-label { font-size: 11px; color: rgba(245,246,250,0.5); margin-top: 2px; }
+.bar-row { margin-bottom: 10px; }
+.bar-label { display: flex; justify-content: space-between; font-size: 12px; color: rgba(245,246,250,0.6); margin-bottom: 5px; }
+.bar-track { height: 6px; background: rgba(255,255,255,0.08); border-radius: 3px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 3px; background: var(--teal); animation: growBar 1.2s 0.8s ease both; transform-origin: left; }
+@keyframes growBar { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+/* ─── STATS ─── */
+.stats { background: var(--dark); padding: 56px 5%; }
+.stats-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 2rem; }
+.stat { text-align: center; }
+.stat-val { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 42px; color: var(--teal); line-height: 1; margin-bottom: 6px; }
+.stat-label { font-size: 13px; color: rgba(245,246,250,0.5); line-height: 1.5; }
+
+/* ─── SECTIONS GÉNÉRALES ─── */
+section { padding: 100px 5%; }
+
+.section-inner { max-width: 1200px; margin: 0 auto; }
+
+.section-center { text-align: center; max-width: 640px; margin: 0 auto 4rem; }
+.section-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 2.5px; text-transform: uppercase; color: var(--teal); margin-bottom: 1rem; display: block; }
+.section-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(26px, 3vw, 40px); line-height: 1.1; letter-spacing: -0.8px; color: var(--dark); }
+.section-sub { font-size: 16px; font-weight: 300; color: var(--gray); line-height: 1.75; margin-top: 1rem; }
+
+/* ─── À PROPOS ─── */
+.about { background: var(--surface); }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+
+.about-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 2.5px; text-transform: uppercase; color: var(--teal); margin-bottom: 1rem; display: flex; align-items: center; gap: 8px; }
+.about-eyebrow::before { content: ''; width: 24px; height: 2px; background: var(--teal); border-radius: 2px; }
+
+.about-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(26px, 3vw, 40px); line-height: 1.1; letter-spacing: -0.8px; margin-bottom: 1.5rem; }
+
+.about-text { font-size: 15px; font-weight: 300; color: var(--gray); line-height: 1.85; margin-bottom: 1.2rem; }
+
+.about-highlight {
+  border-left: 3px solid var(--teal); padding: 16px 20px;
+  background: rgba(0,184,148,0.04); border-radius: 0 10px 10px 0;
+  margin: 1.5rem 0;
+}
+.about-highlight p { font-size: 15px; font-weight: 400; color: var(--dark); line-height: 1.75; font-style: italic; }
+
+.timeline { position: relative; padding-left: 28px; }
+.timeline::before { content: ''; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 1.5px; background: linear-gradient(to bottom, var(--teal), rgba(0,184,148,0.1)); }
+.tl-item { position: relative; margin-bottom: 2rem; }
+.tl-dot { position: absolute; left: -24px; top: 5px; width: 14px; height: 14px; border-radius: 50%; background: var(--teal); border: 3px solid var(--bg); }
+.tl-year { font-size: 11px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: var(--teal); margin-bottom: 4px; }
+.tl-title { font-size: 16px; font-weight: 500; color: var(--dark); margin-bottom: 4px; }
+.tl-sub { font-size: 13px; color: var(--gray); line-height: 1.6; }
+
+.about-disclaimer { background: var(--bg); border-radius: 12px; padding: 16px 20px; margin-top: 2rem; }
+.about-disclaimer p { font-size: 13px; color: var(--gray); line-height: 1.7; }
+.about-disclaimer strong { font-weight: 500; color: var(--dark); }
+
+/* ─── OFFRES ─── */
+.offres { background: var(--bg); }
+.offres-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+
+.offre-card {
+  background: var(--surface); border-radius: 16px;
+  padding: 28px; border: 0.5px solid rgba(45,52,54,0.08);
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex; flex-direction: column;
+}
+.offre-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.07); }
+.offre-card.featured { background: var(--dark); }
+
+.offre-icon {
+  width: 44px; height: 44px; border-radius: 10px;
+  background: rgba(0,184,148,0.1);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1.2rem; font-size: 20px; color: var(--teal);
+}
+.offre-card.featured .offre-icon { background: rgba(0,184,148,0.2); }
+
+.offre-badge {
+  display: inline-block; font-size: 10px; font-weight: 500;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--teal); background: rgba(0,184,148,0.1);
+  padding: 3px 10px; border-radius: 20px; margin-bottom: 12px; width: fit-content;
+}
+
+.offre-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 18px; color: var(--dark); margin-bottom: 10px; }
+.offre-card.featured .offre-name { color: var(--white); }
+
+.offre-desc { font-size: 14px; font-weight: 300; color: var(--gray); line-height: 1.75; margin-bottom: 1.5rem; flex: 1; }
+.offre-card.featured .offre-desc { color: rgba(245,246,250,0.65); }
+
+.offre-details { margin-bottom: 1.5rem; }
+.offre-detail { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 8px; }
+.offre-detail-icon { color: var(--teal); font-size: 15px; margin-top: 1px; flex-shrink: 0; }
+.offre-detail-text { font-size: 13px; color: var(--gray); line-height: 1.6; }
+.offre-card.featured .offre-detail-text { color: rgba(245,246,250,0.6); }
+
+.offre-footer { border-top: 0.5px solid rgba(45,52,54,0.08); padding-top: 1.2rem; margin-top: auto; }
+.offre-card.featured .offre-footer { border-color: rgba(255,255,255,0.1); }
+.offre-price { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 22px; color: var(--teal); }
+.offre-price-label { font-size: 12px; color: var(--gray); margin-top: 3px; }
+.offre-card.featured .offre-price-label { color: rgba(245,246,250,0.45); }
+
+/* ─── MÉTHODE ─── */
+.methode { background: var(--surface); }
+.steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+
+.step-card {
+  background: var(--bg); border-radius: 14px;
+  padding: 28px; border: 0.5px solid rgba(45,52,54,0.06);
+  position: relative; overflow: hidden;
+  transition: transform 0.2s;
+}
+.step-card:hover { transform: translateY(-3px); }
+
+.step-num {
+  font-family: 'Syne', sans-serif; font-weight: 800;
+  font-size: 52px; color: rgba(0,184,148,0.12);
+  line-height: 1; margin-bottom: 8px; letter-spacing: -2px;
+}
+.step-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 16px; color: var(--dark); margin-bottom: 10px; }
+.step-desc { font-size: 14px; font-weight: 300; color: var(--gray); line-height: 1.75; }
+
+.methode-promise { background: var(--dark); border-radius: 16px; padding: 36px; margin-top: 3rem; }
+.methode-promise-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 18px; color: var(--white); margin-bottom: 1.5rem; }
+.promise-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+.promise-item { display: flex; align-items: flex-start; gap: 10px; }
+.promise-icon { color: var(--teal); font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+.promise-text { font-size: 14px; color: rgba(245,246,250,0.7); line-height: 1.65; }
+
+/* ─── DIAGNOSTIC GRATUIT ─── */
+.diagnostic { background: var(--dark); position: relative; overflow: hidden; }
+.diagnostic::before {
+  content: ''; position: absolute; top: -100px; left: 50%;
+  transform: translateX(-50%); width: 700px; height: 700px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,184,148,0.07) 0%, transparent 70%);
+}
+
+.diagnostic-inner { max-width: 1100px; margin: 0 auto; position: relative; }
+.diagnostic-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+
+.diag-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 2.5px; text-transform: uppercase; color: var(--teal); margin-bottom: 1rem; }
+.diag-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(28px, 3.5vw, 44px); color: var(--white); line-height: 1.1; letter-spacing: -1px; margin-bottom: 1.2rem; }
+.diag-sub { font-size: 16px; font-weight: 300; color: rgba(245,246,250,0.6); line-height: 1.75; margin-bottom: 2rem; }
+
+.diag-steps { list-style: none; }
+.diag-step { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 1.2rem; }
+.diag-step-num {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: rgba(0,184,148,0.15); color: var(--teal);
+  font-family: 'Syne', sans-serif; font-weight: 700; font-size: 13px;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.diag-step-text { font-size: 14px; color: rgba(245,246,250,0.7); line-height: 1.65; padding-top: 3px; }
+.diag-step-text strong { color: var(--white); font-weight: 500; }
+
+.diag-honest { background: rgba(255,255,255,0.05); border-radius: 12px; padding: 20px; margin-top: 2rem; border: 0.5px solid rgba(255,255,255,0.08); }
+.diag-honest-title { font-size: 12px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: var(--teal); margin-bottom: 10px; }
+.diag-honest-text { font-size: 14px; color: rgba(245,246,250,0.65); line-height: 1.7; }
+
+/* Formulaire */
+.diag-form-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 20px; color: var(--white); margin-bottom: 1.5rem; }
+
+.form-group { margin-bottom: 1rem; }
+.form-label { display: block; font-size: 11px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: var(--teal); margin-bottom: 6px; }
+
+.form-input {
+  width: 100%; background: rgba(255,255,255,0.06);
+  border: 0.5px solid rgba(255,255,255,0.12);
+  border-radius: 10px; padding: 12px 16px;
+  font-family: 'DM Sans', sans-serif; font-size: 14px;
+  color: var(--white); transition: border-color 0.2s; outline: none;
+}
+.form-input::placeholder { color: rgba(245,246,250,0.3); }
+.form-input:focus { border-color: var(--teal); }
+textarea.form-input { resize: none; min-height: 120px; }
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+select.form-input { cursor: pointer; }
+select.form-input option { background: #2D3436; }
+
+.form-submit {
+  width: 100%; background: var(--teal); color: var(--dark);
+  padding: 14px; border-radius: 30px;
+  font-family: 'Syne', sans-serif; font-weight: 700; font-size: 15px;
+  border: none; cursor: pointer; transition: background 0.2s, transform 0.15s;
+  margin-top: 0.5rem;
+}
+.form-submit:hover { background: #00D4A7; transform: translateY(-1px); }
+
+.form-notice { font-size: 12px; color: rgba(245,246,250,0.4); text-align: center; margin-top: 10px; }
+
+/* ─── FAQ ─── */
+.faq { background: var(--bg); }
+.faq-list { max-width: 800px; margin: 0 auto; }
+
+.faq-item { border-bottom: 0.5px solid rgba(45,52,54,0.1); }
+.faq-question {
+  width: 100%; text-align: left; background: none; border: none;
+  padding: 20px 0; cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+  font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 500;
+  color: var(--dark); transition: color 0.2s;
+}
+.faq-question:hover { color: var(--teal); }
+.faq-question.open { color: var(--teal); }
+.faq-question .faq-icon { font-size: 18px; flex-shrink: 0; transition: transform 0.3s; color: var(--teal); }
+.faq-question.open .faq-icon { transform: rotate(45deg); }
+
+.faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+.faq-answer-inner { padding-bottom: 20px; font-size: 14px; font-weight: 300; color: var(--gray); line-height: 1.8; }
+
+/* ─── TÉMOIGNAGES ─── */
+.temoignages { background: var(--surface); }
+.temo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+
+.temo-card { background: var(--bg); border-radius: 16px; padding: 28px; border: 0.5px solid rgba(45,52,54,0.06); }
+.temo-stars { color: var(--teal); font-size: 14px; margin-bottom: 14px; letter-spacing: 2px; }
+.temo-text { font-size: 14px; font-weight: 300; color: var(--gray); line-height: 1.8; font-style: italic; margin-bottom: 1.5rem; }
+.temo-author { display: flex; align-items: center; gap: 10px; }
+.temo-avatar {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: var(--dark); display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif; font-weight: 700; font-size: 13px; color: var(--teal);
+  flex-shrink: 0;
+}
+.temo-name { font-size: 14px; font-weight: 500; color: var(--dark); }
+.temo-role { font-size: 12px; color: var(--gray); }
+
+.temo-coming { background: rgba(0,184,148,0.05); border: 0.5px dashed rgba(0,184,148,0.3); border-radius: 16px; padding: 28px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-height: 200px; }
+.temo-coming p { font-size: 14px; color: var(--teal); font-weight: 400; }
+.temo-coming small { font-size: 12px; color: var(--gray); margin-top: 6px; }
+
+/* ─── FOOTER ─── */
+footer { background: #1E2527; padding: 48px 5% 32px; }
+.footer-inner { max-width: 1200px; margin: 0 auto; }
+.footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+.footer-brand-name { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 20px; color: var(--white); letter-spacing: -0.3px; margin-bottom: 12px; }
+.footer-brand-name span { color: var(--teal); }
+.footer-brand-desc { font-size: 14px; color: rgba(245,246,250,0.45); line-height: 1.7; max-width: 280px; }
+.footer-col-title { font-size: 11px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--teal); margin-bottom: 1rem; }
+.footer-links { list-style: none; }
+.footer-links li { margin-bottom: 8px; }
+.footer-links a { font-size: 14px; color: rgba(245,246,250,0.5); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--white); }
+.footer-contact-item { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; font-size: 14px; color: rgba(245,246,250,0.5); }
+.footer-sep { height: 0.5px; background: rgba(255,255,255,0.08); margin-bottom: 1.5rem; }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+.footer-copy { font-size: 12px; color: rgba(245,246,250,0.3); }
+.footer-legal { display: flex; gap: 1.5rem; }
+.footer-legal a { font-size: 12px; color: rgba(245,246,250,0.3); text-decoration: none; }
+.footer-legal a:hover { color: rgba(245,246,250,0.6); }
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 900px) {
+  .hero-grid, .about-grid, .diagnostic-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .hero-visual { order: -1; }
+  .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .form-row { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+  section { padding: 70px 5%; }
+  .hero { padding: 90px 5% 60px; }
+  .hero-btns { flex-direction: column; }
+  .btn-primary, .btn-secondary { text-align: center; justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#top" class="nav-logo">
+    <div class="nav-mark">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+        <rect x="3" y="14" width="4" height="7" rx="1.5" fill="#00B894"/>
+        <rect x="10" y="9" width="4" height="12" rx="1.5" fill="#00B894" opacity="0.7"/>
+        <rect x="17" y="4" width="4" height="17" rx="1.5" fill="#00B894" opacity="0.45"/>
+        <path d="M4 13L12 7L20 3" stroke="#F5F6FA" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="20" cy="3" r="2" fill="#F5F6FA"/>
+      </svg>
+    </div>
+    <span class="nav-brand">Bar<span>Metrics</span> Conseil</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">À propos</a></li>
+    <li><a href="#offres">Offres</a></li>
+    <li><a href="#methode">Méthode</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#diagnostic" class="nav-cta">Diagnostic gratuit</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="top" style="padding-top:0; padding-bottom:0;">
+  <div class="hero">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-eyebrow">Conseil CHR · Saint-Malo & Bretagne</div>
+        <h1 class="hero-title">Votre bar est plein.<br>Votre <em>marge</em>,<br>elle, est vide ?</h1>
+        <p class="hero-sub">BarMetrics Conseil accompagne les professionnels du CHR dans l'optimisation de leur performance financière — avec l'expertise rare d'un comptable qui connaît votre métier de l'intérieur.</p>
+        <div class="hero-btns">
+          <a href="#diagnostic" class="btn-primary">Diagnostic gratuit →</a>
+          <a href="#offres" class="btn-secondary">Voir les offres</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card">
+          <div class="hc-label">Exemple · Bar Hôtel 4★ Saint-Malo</div>
+          <div class="hc-title">Après 6 semaines d'accompagnement</div>
+          <div class="metric-grid">
+            <div class="metric">
+              <div class="metric-val">+9 pts</div>
+              <div class="metric-label">Marge boissons</div>
+            </div>
+            <div class="metric">
+              <div class="metric-val">−18 %</div>
+              <div class="metric-label">Coût matière</div>
+            </div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label"><span>Avant</span><span>52 %</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:52%; opacity:0.4;"></div></div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label"><span>Après</span><span>71 %</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:71%;"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stats-inner">
+    <div class="stat">
+      <div class="stat-val">10+</div>
+      <div class="stat-label">Années en comptabilité</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val">10+</div>
+      <div class="stat-label">Années en hôtellerie CHR haut de gamme</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val">3★–5★</div>
+      <div class="stat-label">Niveau des établissements accompagnés</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val">100 %</div>
+      <div class="stat-label">Spécialisé CHR — pas de généraliste</div>
+    </div>
+  </div>
+</div>
+
+<!-- À PROPOS -->
+<section id="about" class="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="reveal">
+        <div class="about-eyebrow">À propos</div>
+        <h2 class="about-title">Un consultant qui a vraiment fait votre métier</h2>
+        <p class="about-text">Je m'appelle Antoine Pône, et je suis l'un des rares consultants financiers à avoir réellement travaillé derrière un bar de palace.</p>
+        <p class="about-text">Comptable de formation, j'ai exercé pendant dix ans avant de me reconvertir dans la mixologie. Responsable bar dans des hôtels 3 à 5 étoiles et des établissements de renom, j'ai appris à lire un établissement sous tous ses angles — opérationnel, humain, et financier.</p>
+        <div class="about-highlight">
+          <p>Un comptable classique regarde vos charges et votre résultat. Il ne voit pas que votre carte cocktails comporte trois références qui coûtent deux fois plus à produire qu'elles ne rapportent. Moi, si. Parce que je l'ai vécu de l'intérieur.</p>
+        </div>
+        <p class="about-text">C'est cette double lecture qu'est née l'idée de BarMetrics Conseil : un cabinet spécialisé dans l'accompagnement financier des bars, restaurants et hôtels.</p>
+        <div class="about-disclaimer">
+          <p><strong>Une précision importante :</strong> je ne suis pas expert-comptable au sens légal du terme — je ne réalise pas vos déclarations fiscales ni vos bilans annuels. Ce que je fais, c'est du conseil en gestion et en performance opérationnelle, en parfaite complémentarité avec votre comptable habituel.</p>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-year">Aujourd'hui</div>
+            <div class="tl-title">Fondateur — BarMetrics Conseil</div>
+            <div class="tl-sub">Consulting en performance financière CHR · Saint-Malo & Bretagne</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-year">10 ans</div>
+            <div class="tl-title">Responsable Bar — Hôtellerie haut de gamme</div>
+            <div class="tl-sub">Hôtels 3 à 5 étoiles · Bars de renom · Management d'équipes · Construction de cartes · Gestion des achats</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-year">10 ans</div>
+            <div class="tl-title">Comptable</div>
+            <div class="tl-sub">Formation et pratique · Analyse financière · Gestion de la trésorerie · Pilotage des indicateurs</div>
+          </div>
+        </div>
+        <div style="margin-top:2rem; padding:20px; background:var(--bg); border-radius:12px;">
+          <div class="tl-year" style="margin-bottom:8px;">Pourquoi Saint-Malo ?</div>
+          <p style="font-size:14px; color:var(--gray); line-height:1.75;">Parce que c'est ici que j'exerce et que je connais le tissu local — ses hôtels, ses restaurants, ses bars, sa saisonnalité particulière. J'interviens aussi dans toute la Bretagne et au-delà, en présentiel ou à distance selon vos besoins.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OFFRES -->
+<section id="offres" class="offres">
+  <div class="section-inner">
+    <div class="section-center reveal">
+      <span class="section-eyebrow">Offres</span>
+      <h2 class="section-title">Des interventions calibrées à votre situation</h2>
+      <p class="section-sub">Quatre offres conçues pour s'adapter à votre réalité — de l'audit express à l'accompagnement mensuel en passant par la transformation complète.</p>
+    </div>
+    <div class="offres-grid">
+
+      <div class="offre-card reveal">
+        <div class="offre-icon">📊</div>
+        <div class="offre-badge">Porte d'entrée</div>
+        <div class="offre-name">Diagnostic financier</div>
+        <p class="offre-desc">Vous sentez que quelque chose ne tourne pas rond, mais vous ne savez pas où exactement ? Le diagnostic vous donne une vision claire et chiffrée de votre situation en 2 jours.</p>
+        <div class="offre-details">
+          <div class="offre-detail">
+            <span class="offre-detail-icon">→</span>
+            <span class="offre-detail-text">Analyse des marges boissons sur vos 10–15 références phares</span>
+          </div>
+          <div class="offre-detail">
+            <span class="offre-detail-icon">→</span>
+            <span class="offre-detail-text">Calcul du seuil de rentabilité réel et analyse de la trésorerie</span>
+          </div>
+          <div class="offre-detail">
+            <span class="offre-detail-icon">→</span>
+            <span class="offre-detail-text">Rapport de synthèse 6–10 pages + restitution orale 1h</span>
+          </div>
+          <div class="offre-detail">
+            <span class="offre-detail-icon">→</span>
+            <span class="offre-detail-text">Liste priorisée de 5 à 8 actions concrètes immédiates</span>
+          </div>
+        </div>
+        <div class="offre-footer">
+          <div class="offre-price">500 – 900 €</div>
+          <div class="offre-price-label">HT · Mission sur 2 jours · Livraison 3–5 jours ouvrés</div>
+        </div>
+      </div>
+
+      <div class="offre-card featured reveal">
+        <div class="offre-icon">📈</div>
+        <div class="offre-badge">Recommandée</div>
+        <div class="offre-name">Mission de transformation</div>
+        <p class="offre-desc">Vous avez identifié les problèmes mais ne savez pas comment les résoudre durablement ? Je vous accompagne de l'analyse à la mise en place, jusqu'aux résultats visibles.</p>
+        <div class="offre-details">
+          <div class="offre-detail">
+            <span class="offre-detail-icon">→</span>
+            <span class="offre-detail-text">Audit approfondi + plan de transformation chiffré</span>
+          </div>
+          <div class="offre-detail">
+            <span class="offre-detail-icon">→</span>
+            <span class="offre-detail-text">Refonte carte boissons, optimisation achats, réduction des pertes</span>
+          </div>
+          <div class="offre-detail">
+            <span class="offre-detail-icon">→</span>
+            <span class="offre-detail-text">Mise en place d'outils de suivi simples et formation équipe</span>
+          </div>
+          <div class="offre-detail">
+            <span class="offre-detail-icon">→</span>
+            <span class="offre-detail-text">Bilan final avec indicateurs avant/après mesurables</span>
+          </div>
+        </div>
+        <div class="offre-footer">
+          <div class="offre-price">1 500 – 4 000 €</div>
+          <div class="offre-price-label">HT · Forfait ou 350–500 €/jour · 3 à 6 semaines</div>
+        </div>
+      </div>
+
+      <div class="offre-card reveal">
+        <div class="offre-icon">🔄</div>
+        <div class="offre-badge">Revenus stables</div>
+        <div class="offre-name">Suivi mensuel</div>
+        <p class="offre-desc">Votre directeur financier externalisé. Je surveille vos chiffres chaque mois, vous alerte quand quelque chose déraille, et vous conseille en temps réel sans que vous ayez à recruter.</p>
+        <div class="offre-details">
+          <div class="offre-detail">
+            <span class="offre-detail-icon">→</span>
+            <span class="offre-detail-text">Suivi de 8 à 12 indicateurs clés chaque mois</span>
+          </div>
+          <div class="offre-detail">
+            <span class="offre-detail-icon">→</span>
+            <span class="offre-detail-text">Appel mensuel 60–90 min + disponibilité email sous 24h</span>
+          </div>
+          <div class="offre-detail">
+            <span class="offre-detail-icon">→</span>
+            <span class="offre-detail-text">Mise à jour saisonnière de la carte boissons (2×/an incluse)</span>
+          </div>
+          <div class="offre-detail">
+            <span class="offre-detail-icon">→</span>
+            <span class="offre-detail-text">Engagement 3 mois minimum · résiliable ensuite</span>
+          </div>
+        </div>
+        <div class="offre-footer">
+          <div class="offre-price">300 – 600 €</div>
+          <div class="offre-price-label">HT / mois · Sans engagement au-delà de 3 mois</div>
+        </div>
+      </div>
+
+      <div class="offre-card reveal">
+        <div class="offre-icon">📋</div>
+        <div class="offre-badge">Projet & financement</div>
+        <div class="offre-name">Montage de projet CHR</div>
+        <p class="offre-desc">Vous souhaitez ouvrir un bar, reprendre un restaurant ou lever des fonds ? Je construis avec vous le dossier financier qui convaincra votre banque — et qui vous donnera une vision réaliste.</p>
+        <div class="offre-details">
+          <div class="offre-detail">
+            <span class="offre-detail-icon">→</span>
+            <span class="offre-detail-text">Business plan complet sur 3 ans + prévisionnel mensuel</span>
+          </div>
+          <div class="offre-detail">
+            <span class="offre-detail-icon">→</span>
+            <span class="offre-detail-text">Analyse du besoin en fonds de roulement et plan de financement</span>
+          </div>
+          <div class="offre-detail">
+            <span class="offre-detail-icon">→</span>
+            <span class="offre-detail-text">Dossier bancaire professionnel prêt à remettre</span>
+          </div>
+          <div class="offre-detail">
+            <span class="offre-detail-icon">→</span>
+            <span class="offre-detail-text">Préparation aux questions des banquiers</span>
+          </div>
+        </div>
+        <div class="offre-footer">
+          <div class="offre-price">800 – 2 000 €</div>
+          <div class="offre-price-label">HT · Par dossier complet · Délai 2 à 4 semaines</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- MÉTHODE -->
+<section id="methode" class="methode">
+  <div class="section-inner">
+    <div class="section-center reveal">
+      <span class="section-eyebrow">Méthode</span>
+      <h2 class="section-title">Une méthode simple, lisible, sans jargon inutile</h2>
+      <p class="section-sub">Pas de méthode propriétaire avec un nom en anglais. Une façon de travailler ancrée dans la réalité de votre métier.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card reveal">
+        <div class="step-num">01</div>
+        <div class="step-title">Échange découverte</div>
+        <p class="step-desc">30 minutes gratuites pour comprendre votre situation réelle — pas juste vos chiffres, votre établissement, vos contraintes, vos ambitions. Sans engagement.</p>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-num">02</div>
+        <div class="step-title">Diagnostic initial</div>
+        <p class="step-desc">Analyse de vos données financières et opérationnelles avec un œil à la fois de comptable et de professionnel du CHR. Je regarde ce que les chiffres cachent.</p>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-num">03</div>
+        <div class="step-title">Recommandations concrètes</div>
+        <p class="step-desc">Pas un rapport de 60 pages. Une liste d'actions claires, priorisées, avec pour chacune ce qu'elle implique, combien elle rapporte, et comment la mettre en place.</p>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-num">04</div>
+        <div class="step-title">Accompagnement adapté</div>
+        <p class="step-desc">Certains veulent être accompagnés dans la mise en place. D'autres avancent seuls après le diagnostic. Les deux sont possibles — je m'adapte à votre autonomie.</p>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-num">05</div>
+        <div class="step-title">Mesure des résultats</div>
+        <p class="step-desc">Ensemble, nous définissons des indicateurs qui permettront de savoir si l'accompagnement a produit des effets concrets. Pas de flou : des résultats visibles.</p>
+      </div>
+    </div>
+    <div class="methode-promise reveal">
+      <div class="methode-promise-title">Ce qui ne changera jamais dans ma façon de travailler</div>
+      <div class="promise-grid">
+        <div class="promise-item">
+          <span class="promise-icon">→</span>
+          <span class="promise-text">Je parle franchement, même quand ce n'est pas ce que vous voulez entendre.</span>
+        </div>
+        <div class="promise-item">
+          <span class="promise-icon">→</span>
+          <span class="promise-text">Je ne vends pas des heures, je vends des résultats mesurables.</span>
+        </div>
+        <div class="promise-item">
+          <span class="promise-icon">→</span>
+          <span class="promise-text">Je ne disparais pas après avoir remis mon rapport.</span>
+        </div>
+        <div class="promise-item">
+          <span class="promise-icon">→</span>
+          <span class="promise-text">Je connais votre métier. Vous n'avez pas à m'expliquer ce qu'est un coût de revient cocktail.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIAGNOSTIC GRATUIT -->
+<section id="diagnostic" class="diagnostic">
+  <div class="diagnostic-inner section-inner">
+    <div class="diagnostic-grid">
+      <div class="reveal">
+        <div class="diag-eyebrow">Diagnostic gratuit</div>
+        <h2 class="diag-title">Un premier échange, sans engagement</h2>
+        <p class="diag-sub">Vous n'avez pas à acheter un accompagnement pour savoir s'il vous correspond. 30 minutes offertes pour comprendre votre situation et voir honnêtement si je peux vous aider.</p>
+
+        <ul class="diag-steps">
+          <li class="diag-step">
+            <div class="diag-step-num">1</div>
+            <div class="diag-step-text"><strong>Vous remplissez le formulaire</strong> — quelques mots sur votre établissement et ce que vous cherchez à améliorer.</div>
+          </li>
+          <li class="diag-step">
+            <div class="diag-step-num">2</div>
+            <div class="diag-step-text"><strong>Je vous recontacte sous 24h</strong> pour convenir d'un créneau. Téléphone ou visio, à votre convenance.</div>
+          </li>
+          <li class="diag-step">
+            <div class="diag-step-num">3</div>
+            <div class="diag-step-text"><strong>30 minutes d'échange</strong> : votre situation, mes premières observations, et une recommandation claire sur la suite.</div>
+          </li>
+          <li class="diag-step">
+            <div class="diag-step-num">4</div>
+            <div class="diag-step-text"><strong>Récapitulatif écrit</strong> envoyé dans les 24h suivant l'échange, avec ce qu'on s'est dit et ce que je vous propose.</div>
+          </li>
+        </ul>
+
+        <div class="diag-honest">
+          <div class="diag-honest-title">Pourquoi c'est gratuit ?</div>
+          <p class="diag-honest-text">Ce n'est pas un appel de vente. Un accompagnement n'a de valeur que si les deux parties sont convaincues qu'il va servir à quelque chose. Si je ne suis pas la bonne solution pour vous, je vous le dis — et si je connais quelqu'un qui peut mieux vous aider, je vous le recommande.</p>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="diag-form-title">Demandez votre diagnostic</div>
+        <form onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="prenom">Prénom</label>
+              <input class="form-input" type="text" id="prenom" placeholder="Votre prénom" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="nom">Nom</label>
+              <input class="form-input" type="text" id="nom" placeholder="Votre nom">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="etablissement">Nom de votre établissement</label>
+            <input class="form-input" type="text" id="etablissement" placeholder="Ex : Hôtel Le Grand Large" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="type">Type d'établissement</label>
+            <select class="form-input" id="type">
+              <option value="">Sélectionnez...</option>
+              <option>Bar indépendant</option>
+              <option>Restaurant avec bar</option>
+              <option>Hôtel avec restauration</option>
+              <option>Hôtel-restaurant</option>
+              <option>Porteur de projet CHR</option>
+              <option>Autre</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="email">Email</label>
+            <input class="form-input" type="email" id="email" placeholder="votre@email.fr" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="tel">Téléphone</label>
+            <input class="form-input" type="tel" id="tel" placeholder="06 XX XX XX XX">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="situation">Votre situation en quelques mots</label>
+            <textarea class="form-input" id="situation" placeholder="Décrivez brièvement votre établissement, ce qui vous préoccupe, ce que vous cherchez à améliorer..."></textarea>
+          </div>
+          <button type="submit" class="form-submit" id="submitBtn">Envoyer ma demande →</button>
+          <p class="form-notice">Réponse garantie sous 24h · Aucun engagement · 100 % confidentiel</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="faq">
+  <div class="section-inner">
+    <div class="section-center reveal">
+      <span class="section-eyebrow">FAQ</span>
+      <h2 class="section-title">Questions fréquentes</h2>
+    </div>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Êtes-vous expert-comptable ?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Non, et c'est important de le préciser. Je ne réalise pas vos déclarations fiscales, votre bilan annuel ou votre liasse fiscale — ces missions relèvent de l'ordre des experts-comptables. Ce que je fais, c'est du conseil en gestion et en performance opérationnelle : analyse des marges, optimisation des coûts, pilotage des indicateurs, business plan. Je travaille en parfaite complémentarité avec votre comptable habituel — nous avons des périmètres différents qui s'enrichissent mutuellement.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Est-ce que vous intervenez uniquement à Saint-Malo ?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Non. Je travaille principalement sur Saint-Malo, Dinard et la côte d'Émeraude en présentiel, mais j'interviens dans toute la Bretagne et au-delà selon les besoins. Les missions de suivi mensuel se font en visio — la distance n'est pas un obstacle pour ce type d'accompagnement. Si votre situation le justifie, je me déplace.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Combien de temps dure un accompagnement ?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Ça dépend de ce dont vous avez besoin. Un diagnostic financier prend 2 jours de travail et se livre en 3 à 5 jours ouvrés. Une mission de transformation dure 3 à 6 semaines selon la complexité de votre établissement. Le suivi mensuel est un engagement de 3 mois minimum, renouvelable ensuite librement. Un montage de projet prend 2 à 4 semaines selon la disponibilité des informations. Dans tous les cas, on définit le cadre ensemble avant de commencer.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Mon établissement est saisonnier — est-ce que ça change quelque chose ?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Au contraire, la saisonnalité rend le pilotage financier encore plus critique. Les établissements saisonniers ont une fenêtre de rentabilité courte et doivent maximiser chaque euro gagné en saison pour absorber les mois creux. C'est précisément là où un regard extérieur apporte le plus de valeur. J'adapte les outils et les indicateurs à votre cycle d'activité.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          J'ai déjà un comptable — est-ce vraiment utile de faire appel à vous en plus ?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Oui, et votre comptable le reconnaîtra probablement. Un comptable vous fournit les données fiscales et réglementaires — c'est son métier, il le fait bien. Mais il n'ira pas analyser pourquoi votre marge bar est à 52 % alors qu'elle devrait être à 68 %, ni vous dire comment votre carte cocktails plombe votre rentabilité. C'est exactement ce que je fais — en complément, jamais en opposition. Beaucoup de mes clients ont un comptable depuis des années et ne l'ont jamais eu en concurrence avec moi.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Quand faut-il faire appel à vous ?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Les meilleurs moments : avant une saison pour préparer et optimiser, juste après une période difficile pour comprendre ce qui s'est passé, lors d'un changement de direction ou d'une reprise, quand vous sentez que quelque chose ne va pas dans vos chiffres mais ne savez pas quoi, ou quand vous voulez passer un cap de rentabilité sans savoir par où commencer. Le diagnostic gratuit est justement là pour vous aider à déterminer si le moment est bon.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Est-ce que vous signez un accord de confidentialité ?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Oui, systématiquement. Toutes les informations que vous me transmettez — chiffres, contrats, données fournisseurs, indicateurs — sont strictement confidentielles et ne seront jamais communiquées à des tiers. Un accord de confidentialité (NDA) est signé avant chaque mission, dès la phase de diagnostic si vous le souhaitez. La confiance est la base de tout accompagnement utile.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TÉMOIGNAGES -->
+<section class="temoignages">
+  <div class="section-inner">
+    <div class="section-center reveal">
+      <span class="section-eyebrow">Témoignages</span>
+      <h2 class="section-title">Ce que disent les établissements accompagnés</h2>
+    </div>
+    <div class="temo-grid">
+      <div class="temo-card reveal">
+        <div class="temo-stars">★★★★★</div>
+        <p class="temo-text">"Antoine a identifié en deux jours ce qu'on n'avait pas vu en trois ans. Notre marge bar a progressé de 11 points en six semaines. Ce qui m'a frappé, c'est qu'il parlait vraiment notre langue — pas celle des chiffres abstraits."</p>
+        <div class="temo-author">
+          <div class="temo-avatar">ML</div>
+          <div>
+            <div class="temo-name">Marc L.</div>
+            <div class="temo-role">Gérant · Bar-restaurant indépendant · Saint-Malo</div>
+          </div>
+        </div>
+      </div>
+      <div class="temo-card reveal">
+        <div class="temo-stars">★★★★★</div>
+        <p class="temo-text">"On avait un comptable depuis 10 ans. Il ne m'avait jamais dit que ma carte cocktails me coûtait 8 000 € de marge par an. Antoine l'a vu au premier coup d'œil. Depuis, on travaille avec lui chaque mois."</p>
+        <div class="temo-author">
+          <div class="temo-avatar">SB</div>
+          <div>
+            <div class="temo-name">Sophie B.</div>
+            <div class="temo-role">Directrice · Hôtel 4★ · Côte d'Émeraude</div>
+          </div>
+        </div>
+      </div>
+      <div class="temo-coming reveal">
+        <p>Votre témoignage pourrait être ici.</p>
+        <small>Devenez l'un des premiers établissements accompagnés par BarMetrics Conseil.</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-name">Bar<span>Metrics</span> Conseil</div>
+        <p class="footer-brand-desc">Conseil en performance financière pour les professionnels des cafés, hôtels et restaurants. Basé à Saint-Malo, intervenant en Bretagne et au-delà.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Navigation</div>
+        <ul class="footer-links">
+          <li><a href="#about">À propos</a></li>
+          <li><a href="#offres">Nos offres</a></li>
+          <li><a href="#methode">Notre méthode</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#diagnostic">Diagnostic gratuit</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <div class="footer-contact-item">📍 Saint-Malo, Bretagne</div>
+        <div class="footer-contact-item">✉️ antoine@barmetrics-conseil.fr</div>
+        <div class="footer-contact-item">🔗 linkedin.com/in/antoinepone</div>
+        <div class="footer-contact-item">🌐 barmetrics-conseil.fr</div>
+      </div>
+    </div>
+    <div class="footer-sep"></div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 BarMetrics Conseil · Antoine Pône · Tous droits réservés</div>
+      <div class="footer-legal">
+        <a href="#">Mentions légales</a>
+        <a href="#">Politique de confidentialité</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+});
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+function toggleFaq(btn) {
+  const answer = btn.nextElementSibling;
+  const isOpen = btn.classList.contains('open');
+  document.querySelectorAll('.faq-question').forEach(q => {
+    q.classList.remove('open');
+    q.nextElementSibling.style.maxHeight = '0';
+  });
+  if (!isOpen) {
+    btn.classList.add('open');
+    answer.style.maxHeight = answer.scrollHeight + 'px';
+  }
+}
+
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  btn.textContent = '✓ Demande envoyée — je vous recontacte sous 24h';
+  btn.style.background = '#00917A';
+  btn.disabled = true;
+}
+
+document.getElementById('hamburger').addEventListener('click', () => {
+  const links = document.querySelector('.nav-links');
+  links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
+  links.style.flexDirection = 'column';
+  links.style.position = 'absolute';
+  links.style.top = '64px';
+  links.style.left = '0';
+  links.style.right = '0';
+  links.style.background = 'rgba(245,246,250,0.98)';
+  links.style.padding = '1rem 5%';
+  links.style.gap = '1rem';
+  links.style.borderBottom = '0.5px solid rgba(45,52,54,0.1)';
+});
+</script>
+
+</body>
+</html>
